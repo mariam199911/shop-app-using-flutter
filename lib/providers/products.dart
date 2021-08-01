@@ -103,6 +103,9 @@ class Products with ChangeNotifier {
         '/products.json?auth=$authToken');
     try {
       final response = await http.get(url);
+      if (response.statusCode >= 400) {
+        print('not fund#############');
+      }
       final extractedData = json.decode(response.body) as Map<String, dynamic>;
       final List<Product> prodList = [];
       extractedData.forEach((prodId, prodData) {
